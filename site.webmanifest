@@ -1,0 +1,16 @@
+{
+  "name": "Brew Code Tech",
+  "short_name": "Brew Code Tech",
+  "description": "Brew Code Tech is a software development studio building reliable web, mobile, and AI-powered products.",
+  "start_url": "/web-app/",
+  "display": "standalone",
+  "background_color": "#090909",
+  "theme_color": "#090909",
+  "icons": [
+    {
+      "src": "/web-app/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
