@@ -4,7 +4,7 @@ The marketing landing page for **Brew Code Tech**, a software development studio
 fast, accessible, single-page React site with animated sections, no backend, and a
 mailto-based contact flow.
 
-Live site: https://brewcode-tech.github.io/web-app/
+Live site: https://brewcodetech.com/
 
 ## Project Overview
 
@@ -109,10 +109,11 @@ npm run preview
 
 ## Deployment to GitHub Pages
 
-This repo is served as a GitHub Pages **project page** at
-`https://brewcode-tech.github.io/web-app/`, so the Vite `base` is set to `/web-app/` in
-[`vite.config.ts`](vite.config.ts). If you fork this repo under a different name, update `base`
-to match your repo name (or `'/'` if deploying to a custom domain / user/org page).
+The site is served from the custom domain **brewcodetech.com** via GitHub Pages, so the Vite
+`base` is `'/'` in [`vite.config.ts`](vite.config.ts) and [`public/CNAME`](public/CNAME) pins
+the domain (committed to the repo so it survives every deploy, rather than relying only on the
+dashboard setting). If you fork this repo without a custom domain, set `base: '/your-repo-name/'`
+instead and delete `public/CNAME`.
 
 **Automatic (recommended):** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
 type-checks, lints, builds, and deploys to GitHub Pages on every push to `main`. Enable it once
@@ -126,6 +127,23 @@ npm run deploy
 
 This runs `predeploy` (`npm run build`) automatically, then publishes `dist/` via
 [`gh-pages`](https://www.npmjs.com/package/gh-pages).
+
+### Custom domain setup (one-time)
+
+1. **GitHub → Settings → Pages → Custom domain**: enter `brewcodetech.com` and save. GitHub
+   verifies the domain once DNS resolves (next step) and provisions a Let's Encrypt TLS
+   certificate automatically.
+2. **DNS records** (add at your registrar/DNS provider):
+   | Type  | Host/Name | Value                        |
+   | ----- | --------- | ---------------------------- |
+   | A     | `@`       | `185.199.108.153`             |
+   | A     | `@`       | `185.199.109.153`             |
+   | A     | `@`       | `185.199.110.153`             |
+   | A     | `@`       | `185.199.111.153`             |
+   | CNAME | `www`     | `brewcode-tech.github.io`     |
+3. Once DNS propagates (minutes to a few hours), check **Enforce HTTPS** in the same Pages
+   settings page. GitHub automatically 301-redirects `www.brewcodetech.com` to the apex domain
+   set in `public/CNAME`.
 
 ## Customization Guide
 
