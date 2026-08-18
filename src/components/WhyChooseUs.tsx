@@ -87,7 +87,7 @@ function WhyChooseUs() {
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{ background: 'radial-gradient(circle, rgba(255,122,24,0.10) 0%, transparent 70%)' }}
+                style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.10) 0%, transparent 70%)' }}
               />
 
               <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/5 bg-white/5 transition-all duration-300 group-hover:border-accent/20 group-hover:bg-accent/10">

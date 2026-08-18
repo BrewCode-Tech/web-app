@@ -4,9 +4,11 @@ export function useActiveSection(ids: string[]): string {
   const [active, setActive] = useState(ids[0] ?? '')
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
+    const observers = new Map<string, IntersectionObserver>()
 
-    ids.forEach((id) => {
+    function observe(id: string) {
+      if (observers.has(id)) return
+
       const el = document.getElementById(id)
       if (!el) return
 
@@ -18,10 +20,29 @@ export function useActiveSection(ids: string[]): string {
       )
 
       observer.observe(el)
-      observers.push(observer)
-    })
+      observers.set(id, observer)
+    }
 
-    return () => observers.forEach((o) => o.disconnect())
+    ids.forEach(observe)
+
+    // Several sections mount lazily behind Suspense after this effect first
+    // runs, so their elements may not exist yet — keep watching the DOM
+    // until every id has been picked up.
+    let mutationObserver: MutationObserver | null = null
+    if (observers.size < ids.length) {
+      mutationObserver = new MutationObserver(() => {
+        ids.forEach(observe)
+        if (observers.size === ids.length) {
+          mutationObserver?.disconnect()
+        }
+      })
+      mutationObserver.observe(document.body, { childList: true, subtree: true })
+    }
+
+    return () => {
+      observers.forEach((o) => o.disconnect())
+      mutationObserver?.disconnect()
+    }
   }, [ids])
 
   return active

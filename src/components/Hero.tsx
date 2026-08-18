@@ -1,5 +1,6 @@
 import { m as motion } from 'framer-motion'
 import { ease, fadeUpWithDelay } from '../lib/motion'
+import { CAL_BOOKING_URL } from '../lib/constants'
 import Eyebrow from './Eyebrow'
 import Terminal from './Terminal'
 
@@ -34,12 +35,12 @@ function Hero() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(255,122,24,0.07) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.07) 0%, transparent 70%)' }}
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(255,122,24,0.05) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.05) 0%, transparent 70%)' }}
       />
 
       <div className="container-page relative z-10 py-16 sm:py-24">
@@ -74,10 +75,13 @@ function Hero() {
 
             <motion.div {...fadeUpWithDelay(0.5)} className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
               <a
-                href="#contact"
+                href={CAL_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary group flex items-center justify-center gap-2 text-center text-sm sm:text-base"
               >
                 Start Your Project
+                <span className="sr-only"> (opens in new tab)</span>
                 <svg
                   aria-hidden="true"
                   className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"

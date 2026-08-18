@@ -1,49 +1,81 @@
 import { useRef } from 'react'
 import { m as motion, useInView } from 'framer-motion'
-import { TbMail } from 'react-icons/tb'
+import { TbCalendarEvent, TbMail } from 'react-icons/tb'
 import { fadeUp, inViewConfig } from '../lib/motion'
+import { CAL_BOOKING_URL, CONTACT_EMAIL } from '../lib/constants'
 import Eyebrow from './Eyebrow'
-
-const CONTACT_EMAIL = 'brewcodetechnologies@gmail.com'
 
 function Contact() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, inViewConfig)
 
   return (
-    <section id="contact" className="w-full bg-surface section-padding">
+    <section id="contact" className="w-full bg-background section-padding">
       <div ref={ref} className="container-page">
         <motion.div
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={fadeUp}
-          className="mx-auto flex max-w-xl flex-col items-center text-center"
+          className="relative overflow-hidden rounded-2xl border border-white/5 bg-surface px-6 py-16 text-center sm:rounded-3xl sm:px-12 sm:py-20 md:px-20"
         >
-          <Eyebrow className="mb-4">Get in Touch</Eyebrow>
-          <h2 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
-            Tell Us About <span className="text-accent">Your Project</span>
-          </h2>
-          <p className="mt-5 text-sm leading-relaxed text-secondary sm:text-base">
-            Whether you have a fully scoped project or just an early idea, we&apos;d love to hear
-            from you. Send us an email and we&apos;ll get back to you.
-          </p>
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 cta-gradient-bg" />
+          <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px cta-shimmer-line" />
 
-          <address className="mt-8 not-italic sm:mt-10">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="btn-primary group inline-flex items-center gap-3 text-sm sm:text-base"
+          <div className="relative mx-auto flex max-w-xl flex-col items-center">
+            <Eyebrow variants={fadeUp} className="mb-5" centered>
+              Get in Touch
+            </Eyebrow>
+
+            <motion.h2
+              variants={fadeUp}
+              className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl"
             >
-              <TbMail aria-hidden="true" size={18} />
-              {CONTACT_EMAIL}
-            </a>
-          </address>
+              Let&apos;s Build Something <span className="text-accent">Amazing.</span>
+            </motion.h2>
 
-          <div className="mt-8 w-full rounded-2xl border border-white/5 bg-background p-4 sm:mt-10 sm:p-5">
-            <p className="text-xs leading-relaxed text-secondary sm:text-sm">
-              <span className="font-medium text-white">No commitment required.</span> We&apos;ll
-              review your inquiry and schedule a free discovery call to understand your needs
-              before any engagement.
-            </p>
+            <motion.p variants={fadeUp} className="mt-5 text-sm leading-relaxed text-secondary sm:text-base">
+              Whether you have a fully scoped project or just an early idea, book a free 30-minute
+              discovery call — no commitment required.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mt-8 sm:mt-10">
+              <motion.a
+                href={CAL_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.98 }}
+                className="btn-primary group inline-flex items-center gap-3 px-7 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-base"
+              >
+                <TbCalendarEvent aria-hidden="true" size={18} />
+                Book a Free Discovery Call
+                <span className="sr-only"> (opens in new tab)</span>
+              </motion.a>
+            </motion.div>
+
+            <motion.address variants={fadeUp} className="mt-5 not-italic">
+              <p className="text-sm text-secondary">
+                Prefer email?{' '}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="font-medium text-white transition-colors hover:text-accent"
+                >
+                  <TbMail aria-hidden="true" size={14} className="mb-0.5 mr-1 inline-block" />
+                  {CONTACT_EMAIL}
+                </a>
+              </p>
+            </motion.address>
+
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 w-full rounded-2xl border border-white/5 bg-background p-4 sm:mt-10 sm:p-5"
+            >
+              <p className="text-xs leading-relaxed text-secondary sm:text-sm">
+                <span className="font-medium text-white">No commitment required.</span> Pick a time
+                that works for you — we&apos;ll spend 30 minutes understanding your project before
+                any engagement.
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>

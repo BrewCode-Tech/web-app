@@ -117,12 +117,12 @@
   }
 
   .cta-gradient-bg {
-    background: radial-gradient(ellipse at 50% 0%, rgba(255, 122, 24, 0.12) 0%, transparent 65%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(45, 212, 191, 0.12) 0%, transparent 65%);
     animation: gradient-shift 4s ease-in-out infinite;
   }
 
   .cta-shimmer-line {
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 122, 24, 0.6) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(45, 212, 191, 0.6) 50%, transparent 100%);
     background-size: 200% auto;
     animation: shimmer 3s linear infinite;
   }

@@ -48,11 +48,11 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     icon: TbChartBar,
-    tag: 'Client Engagement · AI Analytics',
-    title: 'AI-Powered Analytics Platform',
+    tag: 'Lead Engineering · AI Analytics',
+    title: 'Self-Serve AI Analytics Platform',
     description:
-      'Contributed AI-powered analytics to an end-to-end lead-to-cash platform, applying AI-assisted engineering practices to speed up development — informed by prior experience scaling analytics infrastructure.',
-    tags: ['AI-Assisted Engineering', 'Python & FastAPI', 'Analytics Dashboards'],
+      'Co-designed a hybrid AI-powered analytics platform enabling self-service analytics through natural-language queries, automated report generation, and workspace-based dashboards. Built a schema-aware natural-language-to-SQL pipeline with structured outputs and safety guardrails to generate accurate, performant SQL across arbitrary datasets — cutting report generation time from roughly two minutes to under 40 seconds.',
+    tags: ['Natural Language to SQL', 'LLM Guardrails', 'Prompt Optimization', 'Python & FastAPI'],
   },
 ]
 
@@ -66,7 +66,7 @@ function CaseStudyCard({ icon: Icon, tag, title, description, tags }: CaseStudy)
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-12 -top-12 h-40 w-40 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: 'radial-gradient(circle, rgba(255,122,24,0.12) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.12) 0%, transparent 70%)' }}
       />
 
       <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/5 bg-white/5 transition-colors duration-300 group-hover:border-accent/20 group-hover:bg-accent/10">
@@ -115,7 +115,7 @@ function Portfolio() {
               What We&apos;ve <span className="text-accent">Worked On</span>
             </>
           }
-          description="Brew Code Tech is a new studio, but our team isn't new to production software. Here's where we've contributed — as embedded offshore engineers, feature teams, and in one case an end-to-end build — described generally out of respect for client confidentiality."
+          description="Our engineers have shipped production software at real scale — from high-volume data platforms to end-to-end product builds. Specifics below are generalized out of respect for client confidentiality."
         />
 
         <motion.ul

@@ -9,8 +9,8 @@ const About = lazy(() => import('./components/About'))
 const Services = lazy(() => import('./components/Services'))
 const Process = lazy(() => import('./components/Process'))
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'))
+const Team = lazy(() => import('./components/Team'))
 const Portfolio = lazy(() => import('./components/Portfolio'))
-const CTA = lazy(() => import('./components/CTA'))
 const Contact = lazy(() => import('./components/Contact'))
 const Footer = lazy(() => import('./components/Footer'))
 
@@ -29,8 +29,8 @@ function App() {
           <Services />
           <Process />
           <WhyChooseUs />
+          <Team />
           <Portfolio />
-          <CTA />
           <Contact />
         </Suspense>
       </main>

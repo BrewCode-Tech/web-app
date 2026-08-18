@@ -2,13 +2,17 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m as motion } from 'framer-motion'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { ease } from '../lib/motion'
+import { CAL_BOOKING_URL } from '../lib/constants'
 import type { NavLink } from '../types'
 
 const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Process', href: '#process' },
   { label: 'Why Us', href: '#why-us' },
+  { label: 'Team', href: '#team' },
+  { label: 'Work', href: '#portfolio' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -136,10 +140,13 @@ function Navbar() {
 
           <div className="flex items-center gap-3">
             <a
-              href="#contact"
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary group hidden items-center gap-2 text-sm lg:inline-flex"
             >
               Start a Project
+              <span className="sr-only"> (opens in new tab)</span>
               <svg
                 aria-hidden="true"
                 className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:translate-x-0.5"
@@ -273,8 +280,15 @@ function Navbar() {
               </nav>
 
               <div className="shrink-0 border-t border-white/5 px-5 pb-8 pt-4">
-                <a href="#contact" onClick={close} className="btn-primary block w-full text-center text-sm">
+                <a
+                  href={CAL_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={close}
+                  className="btn-primary block w-full text-center text-sm"
+                >
                   Start a Project
+                  <span className="sr-only"> (opens in new tab)</span>
                 </a>
               </div>
             </motion.div>

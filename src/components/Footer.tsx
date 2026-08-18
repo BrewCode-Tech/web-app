@@ -2,17 +2,19 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m as motion, useInView } from 'framer-motion'
 import { TbArrowUp } from 'react-icons/tb'
 import { ease, fadeUp, inViewConfig, stagger } from '../lib/motion'
+import { CONTACT_EMAIL } from '../lib/constants'
 import type { NavLink } from '../types'
 
 const QUICK_LINKS: NavLink[] = [
   { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Process', href: '#process' },
   { label: 'Why Us', href: '#why-us' },
+  { label: 'Team', href: '#team' },
+  { label: 'Work', href: '#portfolio' },
   { label: 'Contact', href: '#contact' },
 ]
-
-const CONTACT_EMAIL = 'brewcodetechnologies@gmail.com'
 
 function BackToTop() {
   const [visible, setVisible] = useState(false)
@@ -94,14 +96,11 @@ function Footer() {
           </motion.div>
         </motion.div>
 
-        <div className="flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 sm:flex-row sm:gap-4 sm:pt-8">
-          <p className="text-center text-xs text-secondary sm:text-left">
+        <div className="flex items-center justify-between gap-4 border-t border-white/5 pt-6 sm:pt-8">
+          <p className="text-xs text-secondary">
             &copy; {new Date().getFullYear()} Brew Code Tech. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <p className="text-xs text-secondary">Built with React &amp; TypeScript</p>
-            <BackToTop />
-          </div>
+          <BackToTop />
         </div>
       </div>
     </footer>

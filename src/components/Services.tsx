@@ -50,7 +50,11 @@ const SERVICES: Service[] = [
   },
 ]
 
-function ServiceCard({ icon: Icon, title, description }: Service) {
+interface ServiceCardProps extends Service {
+  index: number
+}
+
+function ServiceCard({ icon: Icon, title, description, index }: ServiceCardProps) {
   return (
     <motion.li
       variants={staggerItem}
@@ -60,8 +64,15 @@ function ServiceCard({ icon: Icon, title, description }: Service) {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-12 -top-12 h-40 w-40 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: 'radial-gradient(circle, rgba(255,122,24,0.12) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.12) 0%, transparent 70%)' }}
       />
+
+      <span
+        aria-hidden="true"
+        className="absolute right-5 top-4 font-heading text-4xl font-bold text-white/[0.04] transition-colors duration-300 group-hover:text-accent/10 sm:text-5xl"
+      >
+        {String(index + 1).padStart(2, '0')}
+      </span>
 
       <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/5 bg-white/5 transition-colors duration-300 group-hover:border-accent/20 group-hover:bg-accent/10">
         <Icon size={22} className="text-secondary transition-colors duration-300 group-hover:text-accent" />
@@ -107,8 +118,8 @@ function Services() {
           variants={stagger(0.08)}
           className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3"
         >
-          {SERVICES.map((service) => (
-            <ServiceCard key={service.title} {...service} />
+          {SERVICES.map((service, index) => (
+            <ServiceCard key={service.title} index={index} {...service} />
           ))}
         </motion.ul>
       </div>
