@@ -1,67 +1,17 @@
 import { useRef } from 'react'
 import { m as motion, useInView } from 'framer-motion'
-import type { IconType } from 'react-icons'
-import { TbBrain, TbBuildingSkyscraper, TbChartBar, TbChartDots, TbDeviceMobile } from 'react-icons/tb'
+import { Link } from 'react-router-dom'
+import { TbArrowRight } from 'react-icons/tb'
+import { CASE_STUDIES, type CaseStudy } from '../content/caseStudies'
 import { fadeUp, inViewConfig, stagger, staggerItem } from '../lib/motion'
 import SectionHeader from './SectionHeader'
 
-interface CaseStudy {
-  icon: IconType
-  tag: string
-  title: string
-  description: string
-  tags: string[]
-}
-
-const CASE_STUDIES: CaseStudy[] = [
-  {
-    icon: TbChartDots,
-    tag: 'Offshore Team · Backend, Data & DevOps',
-    title: 'Social Media Analytics Platform',
-    description:
-      'Working as part of an offshore engineering team responsible for backend, data, and DevOps on a large-scale social media analytics platform — data systems processing 280+ TB in S3 and 47 TB in Redshift, ingesting 100+ GB and 8–16 billion events daily across 690+ tables. Cut query response times from up to 120 seconds down to under 35, and led a TypeScript migration reaching 93% coverage across 25+ pages.',
-    tags: ['AWS Redshift', 'ETL at Scale', 'Query Optimization', 'TypeScript Migration', 'Team Leadership'],
-  },
-  {
-    icon: TbDeviceMobile,
-    tag: 'Website · End-to-End Delivery',
-    title: 'Social Events & Reviews Platform',
-    description:
-      'Delivered a business review and social platform end-to-end on the web — business discovery, reviews, save/share, and event scheduling for sharing activities with friends, including a smart caching layer that cut the cost of external API calls.',
-    tags: ['End-to-End Delivery', 'Web Platform', 'Smart Caching', 'Product Design'],
-  },
-  {
-    icon: TbBrain,
-    tag: 'Web Platform · In Active Development',
-    title: 'AI Sales Automation Platform',
-    description:
-      'Serving as lead engineer on an AI-powered sales automation platform still in active development — personalized AI email workflows, an algorithmic scheduler to manage sending limits across accounts, Stripe-based payments, and a background job system for continuous campaign delivery.',
-    tags: ['AI Email Workflows', 'Scheduling Algorithms', 'Stripe', 'Lead Engineering'],
-  },
-  {
-    icon: TbBuildingSkyscraper,
-    tag: 'Offshore Team · Feature Delivery',
-    title: 'Bid Management Platform',
-    description:
-      'Working as part of an offshore team implementing new features into an existing enterprise bid management product — ERP integration, Kafka-based event streaming, new vendor-facing modules, and a dedicated automation testing practice covering performance and API regression.',
-    tags: ['ERP Integration', 'Kafka', 'Test Automation', 'Vendor Modules'],
-  },
-  {
-    icon: TbChartBar,
-    tag: 'Lead Engineering · AI Analytics',
-    title: 'Self-Serve AI Analytics Platform',
-    description:
-      'Co-designed a hybrid AI-powered analytics platform enabling self-service analytics through natural-language queries, automated report generation, and workspace-based dashboards. Built a schema-aware natural-language-to-SQL pipeline with structured outputs and safety guardrails to generate accurate, performant SQL across arbitrary datasets — cutting report generation time from roughly two minutes to under 40 seconds.',
-    tags: ['Natural Language to SQL', 'LLM Guardrails', 'Prompt Optimization', 'Python & FastAPI'],
-  },
-]
-
-function CaseStudyCard({ icon: Icon, tag, title, description, tags }: CaseStudy) {
+function CaseStudyCard({ slug, icon: Icon, role, title, summary, highlight, sector }: CaseStudy) {
   return (
     <motion.li
       variants={staggerItem}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-white/5 bg-surface p-6 transition-colors duration-300 hover:border-white/10 sm:p-7"
+      className="group relative overflow-hidden rounded-2xl border border-white/5 bg-surface transition-colors duration-300 hover:border-white/10"
     >
       <div
         aria-hidden="true"
@@ -69,26 +19,31 @@ function CaseStudyCard({ icon: Icon, tag, title, description, tags }: CaseStudy)
         style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.12) 0%, transparent 70%)' }}
       />
 
-      <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/5 bg-white/5 transition-colors duration-300 group-hover:border-accent/20 group-hover:bg-accent/10">
-        <Icon size={22} className="text-secondary transition-colors duration-300 group-hover:text-accent" />
-      </div>
+      <Link to={`/work/${slug}`} className="relative flex h-full flex-col gap-5 p-6 sm:p-7">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/5 bg-white/5 transition-colors duration-300 group-hover:border-accent/20 group-hover:bg-accent/10">
+            <Icon aria-hidden="true" size={22} className="text-secondary transition-colors duration-300 group-hover:text-accent" />
+          </div>
+          <p className="text-right text-xs text-secondary">{sector}</p>
+        </div>
 
-      <div className="relative flex flex-col gap-2">
-        <p className="font-heading text-xs font-medium uppercase tracking-widest text-accent">{tag}</p>
-        <h3 className="font-heading text-base font-semibold text-white sm:text-lg">{title}</h3>
-        <p className="text-sm leading-relaxed text-secondary">{description}</p>
-      </div>
+        <div className="flex flex-col gap-2">
+          <p className="font-heading text-xs font-medium uppercase tracking-widest text-accent">{role}</p>
+          <h3 className="font-heading text-lg font-semibold text-white">{title}</h3>
+          <p className="text-sm leading-relaxed text-secondary">{summary}</p>
+        </div>
 
-      <ul role="list" className="relative flex flex-wrap gap-2">
-        {tags.map((t) => (
-          <li
-            key={t}
-            className="rounded-full border border-white/5 bg-background px-2.5 py-1 text-xs text-secondary"
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
+        <div className="mt-auto flex items-end justify-between gap-4 border-t border-white/5 pt-5">
+          <div className="min-w-0">
+            <p className="font-heading text-2xl font-bold text-white">{highlight.metric}</p>
+            <p className="mt-0.5 text-xs text-secondary">{highlight.label}</p>
+          </div>
+          <span className="flex shrink-0 items-center gap-1 text-sm font-medium text-white transition-colors group-hover:text-accent">
+            Read
+            <TbArrowRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </div>
+      </Link>
 
       <div
         aria-hidden="true"
@@ -98,24 +53,33 @@ function CaseStudyCard({ icon: Icon, tag, title, description, tags }: CaseStudy)
   )
 }
 
-function Portfolio() {
+interface PortfolioProps {
+  /** Show only the first N case studies plus a link to /work. */
+  limit?: number
+  /** Render as the page heading (h1) on /work. */
+  asPage?: boolean
+}
+
+function Portfolio({ limit, asPage = false }: PortfolioProps) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, inViewConfig)
+  const studies = limit ? CASE_STUDIES.slice(0, limit) : CASE_STUDIES
 
   return (
-    <section id="portfolio" className="w-full bg-background section-padding">
+    <section id="work" className={`w-full bg-background section-padding ${asPage ? 'pt-28 sm:pt-36' : ''}`}>
       <div ref={ref} className="container-page">
         <SectionHeader
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={fadeUp}
+          as={asPage ? 'h1' : 'h2'}
           eyebrow="Our Experience"
           heading={
             <>
-              What We&apos;ve <span className="text-accent">Worked On</span>
+              Production Systems, <span className="text-accent">Real Numbers</span>
             </>
           }
-          description="Our engineers have shipped production software at real scale — from high-volume data platforms to end-to-end product builds. Specifics below are generalized out of respect for client confidentiality."
+          description="Work shipped by our founder and the engineers in our network — on offshore teams and as lead engineers. Client names are withheld out of respect for confidentiality; the numbers are real."
         />
 
         <motion.ul
@@ -125,8 +89,8 @@ function Portfolio() {
           variants={stagger(0.1)}
           className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3"
         >
-          {CASE_STUDIES.map((study) => (
-            <CaseStudyCard key={study.title} {...study} />
+          {studies.map((study) => (
+            <CaseStudyCard key={study.slug} {...study} />
           ))}
         </motion.ul>
 
@@ -136,10 +100,18 @@ function Portfolio() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-10 text-center text-sm text-secondary sm:mt-12"
         >
-          Want more detail on any of these?{' '}
-          <a href="#contact" className="font-medium text-white transition-colors hover:text-accent">
-            Reach out and we&apos;ll walk you through it →
-          </a>
+          {limit && limit < CASE_STUDIES.length ? (
+            <Link to="/work" className="font-medium text-white transition-colors hover:text-accent">
+              See all {CASE_STUDIES.length} projects →
+            </Link>
+          ) : (
+            <>
+              Want more detail on any of these?{' '}
+              <Link to="/contact" className="font-medium text-white transition-colors hover:text-accent">
+                Ask us and we&apos;ll walk you through it →
+              </Link>
+            </>
+          )}
         </motion.p>
       </div>
     </section>

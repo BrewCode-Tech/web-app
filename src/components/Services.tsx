@@ -28,7 +28,7 @@ const SERVICES: Service[] = [
     icon: TbDatabase,
     title: 'Data Engineering & Analytics',
     description:
-      'Team members with hands-on experience in large-scale data systems — ETL pipelines, data warehousing, and analytics dashboards for data-intensive products.',
+      'Hands-on experience with large-scale data systems — ETL pipelines, data warehousing, and analytics dashboards for data-intensive products.',
   },
   {
     icon: TbDeviceMobile,
@@ -108,7 +108,7 @@ function Services() {
               Focused on What We&apos;ve <span className="text-accent">Actually Done</span>
             </>
           }
-          description="No padded list of everything under the sun — just the services our team has real, hands-on production experience delivering."
+          description="No padded list of everything under the sun — just the services we have real, hands-on production experience delivering."
         />
 
         <motion.ul
