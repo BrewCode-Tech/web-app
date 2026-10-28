@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { m as motion, useInView } from 'framer-motion'
 import type { IconType } from 'react-icons'
-import { TbBuildingArch, TbHeartHandshake, TbMessages, TbRocket, TbShieldCheck, TbStack2 } from 'react-icons/tb'
+import { TbBrain, TbBuildingArch, TbHeartHandshake, TbRocket, TbShieldCheck, TbTestPipe } from 'react-icons/tb'
 import { fadeUp, inViewConfig, stagger, staggerItem } from '../lib/motion'
 import SectionHeader from './SectionHeader'
 
@@ -14,15 +14,15 @@ interface Reason {
 const REASONS: Reason[] = [
   {
     icon: TbShieldCheck,
-    title: 'Experienced Engineers',
+    title: 'Senior Hands Only',
     description:
-      'Every project is led by senior engineers with production experience — no juniors learning on your timeline.',
+      'Every engagement is led by an engineer with years of production experience — no juniors learning on your budget.',
   },
   {
-    icon: TbStack2,
-    title: 'Modern Technologies',
+    icon: TbBrain,
+    title: 'AI Where It Pays Off',
     description:
-      'We build with current, well-supported tools that keep your codebase maintainable and your product competitive.',
+      'LLM features shipped to production with guardrails, evals, and cost controls — and AI-assisted engineering that speeds up delivery, not just demos.',
   },
   {
     icon: TbBuildingArch,
@@ -31,10 +31,10 @@ const REASONS: Reason[] = [
       'Systems designed to grow with your business — from MVP to millions of users without a painful rewrite.',
   },
   {
-    icon: TbMessages,
-    title: 'Transparent Communication',
+    icon: TbTestPipe,
+    title: 'Quality Engineering Built In',
     description:
-      'Regular updates, shared roadmaps, and direct access to the people building your product. No black boxes.',
+      'Automated tests and CI from the first sprint, plus a real QA automation practice — not developers clicking through their own work.',
   },
   {
     icon: TbRocket,
@@ -67,7 +67,7 @@ function WhyChooseUs() {
               Built Different, <span className="text-accent">By Design</span>
             </>
           }
-          description="There are a lot of dev shops out there. Here's why our clients keep coming back."
+          description="There are a lot of dev shops out there. Here's what you get from a small, senior studio instead."
         />
 
         <motion.ul

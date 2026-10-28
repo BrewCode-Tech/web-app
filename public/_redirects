@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects. www → apex is configured as a Cloudflare
+# Redirect Rule instead (see README), since _redirects only matches paths.
+/home            /             301
+/index.html      /             301

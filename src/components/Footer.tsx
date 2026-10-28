@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m as motion, useInView } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { TbArrowUp } from 'react-icons/tb'
 import { ease, fadeUp, inViewConfig, stagger } from '../lib/motion'
-import { CONTACT_EMAIL } from '../lib/constants'
+import { CAL_BOOKING_URL, CONTACT_EMAIL, LOCATION } from '../content/company'
 import type { NavLink } from '../types'
+import Logo from './Logo'
 
 const QUICK_LINKS: NavLink[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Team', href: '#team' },
-  { label: 'Work', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Work', href: '/work' },
+  { label: 'How We Work', href: '/how-we-work' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 function BackToTop() {
@@ -54,7 +54,7 @@ function Footer() {
 
   return (
     <footer id="footer" className="w-full border-t border-white/5 bg-background">
-      <div ref={ref} className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 sm:pt-16">
+      <div ref={ref} className="mx-auto max-w-7xl px-4 pb-24 pt-12 sm:px-6 sm:pt-16 md:pb-8">
         <motion.div
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
@@ -62,13 +62,12 @@ function Footer() {
           className="mb-10 grid gap-8 sm:mb-14 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-12"
         >
           <motion.div variants={fadeUp} className="sm:col-span-2 lg:col-span-1">
-            <a href="#home" className="font-heading text-xl font-bold tracking-tight text-white">
-              Brew<span className="text-accent">Code</span>
-              <span className="font-medium text-secondary"> Tech</span>
-            </a>
+            <Link to="/" aria-label="Brew Code Tech — home" className="inline-block">
+              <Logo size={44} />
+            </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-secondary">
-              A software development studio building reliable, scalable products for startups and
-              growing businesses.
+              A founder-led offshore software studio in {LOCATION}, building reliable web, SaaS,
+              data, and AI products for teams worldwide.
             </p>
           </motion.div>
 
@@ -77,9 +76,9 @@ function Footer() {
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-2.5 sm:gap-y-3">
               {QUICK_LINKS.map(({ label, href }) => (
                 <li key={label}>
-                  <a href={href} className="text-sm text-secondary transition-colors duration-200 hover:text-white">
+                  <Link to={href} className="text-sm text-secondary transition-colors duration-200 hover:text-white">
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -93,12 +92,24 @@ function Footer() {
             >
               {CONTACT_EMAIL}
             </a>
+            <a
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2.5 block text-sm text-secondary transition-colors duration-200 hover:text-white"
+            >
+              Book a 30-min call
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>
           </motion.div>
         </motion.div>
 
         <div className="flex items-center justify-between gap-4 border-t border-white/5 pt-6 sm:pt-8">
           <p className="text-xs text-secondary">
-            &copy; {new Date().getFullYear()} Brew Code Tech. All rights reserved.
+            &copy; {new Date().getFullYear()} Brew Code Tech. All rights reserved.{' '}
+            <Link to="/privacy" className="underline-offset-2 transition-colors hover:text-white hover:underline">
+              Privacy
+            </Link>
           </p>
           <BackToTop />
         </div>

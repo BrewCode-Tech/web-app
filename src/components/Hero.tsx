@@ -1,13 +1,17 @@
 import { m as motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import type { IconType } from 'react-icons'
+import { TbBrandGithub, TbClockHour4, TbLock } from 'react-icons/tb'
 import { ease, fadeUpWithDelay } from '../lib/motion'
-import { CAL_BOOKING_URL } from '../lib/constants'
+import { CAL_BOOKING_URL } from '../content/company'
 import Eyebrow from './Eyebrow'
 import Terminal from './Terminal'
 
-const STATS = [
-  { value: '20+', label: 'Years Combined Experience' },
-  { value: '5', label: 'Production Platforms' },
-  { value: '100%', label: 'Hands-On Delivery' },
+// The three things offshore buyers worry about most, answered up front.
+const TRUST_CHIPS: { icon: IconType; label: string }[] = [
+  { icon: TbBrandGithub, label: 'Code in your GitHub from day one' },
+  { icon: TbClockHour4, label: 'Daily overlap with your hours' },
+  { icon: TbLock, label: 'NDA before we talk details' },
 ]
 
 function Hero() {
@@ -43,19 +47,19 @@ function Hero() {
         style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.05) 0%, transparent 70%)' }}
       />
 
-      <div className="container-page relative z-10 py-16 sm:py-24">
+      <div className="container-page relative z-10 py-12 sm:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="min-w-0">
             <Eyebrow {...fadeUpWithDelay(0.1)} className="mb-5">
-              Software Development Studio
+              Founder-led offshore engineering
             </Eyebrow>
 
-            <h1 className="font-heading text-[2.25rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl xl:text-7xl">
-              Ideas Brewed
+            <h1 className="font-heading text-[2.25rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              The Offshore Partner
               <br />
-              Into{' '}
+              You Don&apos;t Have to{' '}
               <span className="relative inline-block">
-                <span className="text-accent">Software.</span>
+                <span className="text-accent">Chase.</span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
@@ -70,7 +74,9 @@ function Hero() {
               {...fadeUpWithDelay(0.35)}
               className="mt-6 max-w-lg text-base leading-relaxed text-secondary sm:text-lg md:text-xl"
             >
-              We design, build and maintain reliable software that helps businesses grow.
+              A senior engineer in India who builds your web, SaaS, data, and AI products — working
+              in your hours, shipping in your repos, and bringing in vetted engineers when you need
+              more hands.
             </motion.p>
 
             <motion.div {...fadeUpWithDelay(0.5)} className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
@@ -80,7 +86,7 @@ function Hero() {
                 rel="noopener noreferrer"
                 className="btn-primary group flex items-center justify-center gap-2 text-center text-sm sm:text-base"
               >
-                Start Your Project
+                Book a Free 30-Min Call
                 <span className="sr-only"> (opens in new tab)</span>
                 <svg
                   aria-hidden="true"
@@ -97,28 +103,29 @@ function Hero() {
                   />
                 </svg>
               </a>
-              <a
-                href="#services"
-                className="rounded-lg border border-white/10 px-5 py-3 text-center font-heading font-semibold text-sm text-white transition-colors hover:border-accent/60 hover:text-accent sm:text-base"
+              <Link
+                to="/work"
+                className="rounded-lg border border-white/10 px-5 py-3 text-center font-heading text-sm font-semibold text-white transition-colors hover:border-accent/60 hover:text-accent sm:text-base"
               >
-                Explore Services
-              </a>
+                See Our Work
+              </Link>
             </motion.div>
 
-            <motion.div
+            <motion.ul
               {...fadeUpWithDelay(0.65)}
-              className="mt-10 flex items-center gap-5 border-t border-white/5 pt-8 sm:gap-8"
+              role="list"
+              className="mt-10 flex flex-col gap-3 border-t border-white/5 pt-8 sm:flex-row sm:flex-wrap sm:gap-x-6"
             >
-              {STATS.map(({ value, label }) => (
-                <div key={label} className="min-w-0">
-                  <p className="font-heading text-xl font-bold text-white sm:text-2xl">{value}</p>
-                  <p className="mt-0.5 text-xs text-secondary">{label}</p>
-                </div>
+              {TRUST_CHIPS.map(({ icon: Icon, label }) => (
+                <li key={label} className="flex items-center gap-2 text-sm text-secondary">
+                  <Icon aria-hidden="true" size={18} className="shrink-0 text-accent" />
+                  {label}
+                </li>
               ))}
-            </motion.div>
+            </motion.ul>
           </div>
 
-          <div className="hidden justify-center sm:flex lg:justify-end">
+          <div className="flex justify-center lg:justify-end">
             <Terminal />
           </div>
         </div>
