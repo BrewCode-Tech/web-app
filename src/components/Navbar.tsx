@@ -1,29 +1,37 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m as motion } from 'framer-motion'
-import { useActiveSection } from '../hooks/useActiveSection'
+import { Link, useLocation } from 'react-router-dom'
 import { ease } from '../lib/motion'
-import { CAL_BOOKING_URL } from '../lib/constants'
+import { CAL_BOOKING_URL } from '../content/company'
 import type { NavLink } from '../types'
+import Logo from './Logo'
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Team', href: '#team' },
-  { label: 'Work', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: '/work' },
+  { label: 'How We Work', href: '/how-we-work' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ]
 
-const SECTION_IDS = NAV_LINKS.map((link) => link.href.slice(1))
+// The drawer has room for the home anchors too.
+const DRAWER_LINKS: NavLink[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/#services' },
+  ...NAV_LINKS,
+]
+
+function isActiveLink(pathname: string, href: string) {
+  if (href.includes('#')) return false
+  if (href === '/') return pathname === '/'
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
 const DRAWER_ID = 'mobile-nav-drawer'
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled])'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const active = useActiveSection(SECTION_IDS)
+  const { pathname } = useLocation()
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const drawerRef = useRef<HTMLDivElement>(null)
@@ -100,25 +108,24 @@ function Navbar() {
           aria-label="Primary"
           className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6"
         >
-          <a
-            href="#home"
+          <Link
+            to="/"
             onClick={close}
-            className="shrink-0 font-heading text-lg font-bold tracking-tight text-white sm:text-xl"
+            aria-label="Brew Code Tech — home"
+            className="shrink-0"
           >
-            Brew<span className="text-accent">Code</span>
-            <span className="font-medium text-secondary"> Tech</span>
-          </a>
+            <Logo size={36} />
+          </Link>
 
-          <ul className="hidden items-center gap-1 lg:flex" role="list">
+          <ul className="hidden items-center gap-1 md:flex" role="list">
             {NAV_LINKS.map(({ label, href }) => {
-              const id = href.slice(1)
-              const isActive = active === id
+              const isActive = isActiveLink(pathname, href)
 
               return (
                 <li key={href}>
-                  <a
-                    href={href}
-                    aria-current={isActive ? 'true' : undefined}
+                  <Link
+                    to={href}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`relative rounded-lg px-3 py-2 font-heading text-sm font-medium transition-colors xl:px-4 ${
                       isActive ? 'text-white' : 'text-secondary hover:text-white'
                     }`}
@@ -132,7 +139,7 @@ function Navbar() {
                       />
                     )}
                     <span className="relative z-10">{label}</span>
-                  </a>
+                  </Link>
                 </li>
               )
             })}
@@ -143,9 +150,9 @@ function Navbar() {
               href={CAL_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary group hidden items-center gap-2 text-sm lg:inline-flex"
+              className="btn-primary group hidden items-center gap-2 whitespace-nowrap text-sm md:inline-flex"
             >
-              Start a Project
+              Book a Call
               <span className="sr-only"> (opens in new tab)</span>
               <svg
                 aria-hidden="true"
@@ -170,7 +177,7 @@ function Navbar() {
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               aria-controls={DRAWER_ID}
-              className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-white/5 lg:hidden"
+              className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-white/5 md:hidden"
             >
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
@@ -203,7 +210,7 @@ function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={close}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
             />
 
             <motion.div
@@ -217,13 +224,12 @@ function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.3, ease }}
-              className="fixed right-0 top-0 z-50 flex h-full w-[min(16rem,85vw)] flex-col border-l border-white/5 bg-surface lg:hidden"
+              className="fixed right-0 top-0 z-50 flex h-full w-[min(16rem,85vw)] flex-col border-l border-white/5 bg-surface md:hidden"
             >
               <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-5">
-                <a href="#home" onClick={close} className="font-heading text-base font-bold text-white">
-                  Brew<span className="text-accent">Code</span>
-                  <span className="font-medium text-secondary"> Tech</span>
-                </a>
+                <Link to="/" onClick={close} aria-label="Brew Code Tech — home">
+                  <Logo size={30} />
+                </Link>
                 <button
                   ref={closeButtonRef}
                   type="button"
@@ -247,9 +253,8 @@ function Navbar() {
 
               <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile navigation">
                 <ul className="flex flex-col gap-1" role="list">
-                  {NAV_LINKS.map(({ label, href }, index) => {
-                    const id = href.slice(1)
-                    const isActive = active === id
+                  {DRAWER_LINKS.map(({ label, href }, index) => {
+                    const isActive = isActiveLink(pathname, href)
 
                     return (
                       <motion.li
@@ -258,10 +263,10 @@ function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.22, delay: index * 0.04, ease }}
                       >
-                        <a
-                          href={href}
+                        <Link
+                          to={href}
                           onClick={close}
-                          aria-current={isActive ? 'true' : undefined}
+                          aria-current={isActive ? 'page' : undefined}
                           className={`flex items-center gap-3 rounded-xl px-4 py-3 font-heading text-sm font-medium transition-colors ${
                             isActive
                               ? 'bg-white/5 text-white'
@@ -272,7 +277,7 @@ function Navbar() {
                             <span aria-hidden="true" className="h-4 w-1 shrink-0 rounded-full bg-accent" />
                           )}
                           {label}
-                        </a>
+                        </Link>
                       </motion.li>
                     )
                   })}
@@ -287,7 +292,7 @@ function Navbar() {
                   onClick={close}
                   className="btn-primary block w-full text-center text-sm"
                 >
-                  Start a Project
+                  Book a Free Call
                   <span className="sr-only"> (opens in new tab)</span>
                 </a>
               </div>

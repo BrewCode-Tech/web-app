@@ -1,42 +1,25 @@
-import { lazy, Suspense } from 'react'
-import { LazyMotion } from 'framer-motion'
-import Hero from './components/Hero'
+import { LazyMotion, MotionConfig } from 'framer-motion'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
+import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import StickyCta from './components/StickyCta'
 
 const loadMotionFeatures = () => import('./lib/motion-features').then((mod) => mod.default)
 
-const About = lazy(() => import('./components/About'))
-const Services = lazy(() => import('./components/Services'))
-const Process = lazy(() => import('./components/Process'))
-const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'))
-const Team = lazy(() => import('./components/Team'))
-const Portfolio = lazy(() => import('./components/Portfolio'))
-const Contact = lazy(() => import('./components/Contact'))
-const Footer = lazy(() => import('./components/Footer'))
-
-function SectionFallback() {
-  return <div className="w-full py-28" aria-hidden="true" />
-}
-
+// Shared layout for every route. ScrollRestoration resets scroll on navigation
+// and scrolls to `#hash` targets (e.g. /#services) once the page renders.
 function App() {
   return (
     <LazyMotion features={loadMotionFeatures} strict>
-      <Navbar />
-      <main id="main-content" tabIndex={-1} className="min-h-screen bg-background text-white">
-        <Hero />
-        <Suspense fallback={<SectionFallback />}>
-          <About />
-          <Services />
-          <Process />
-          <WhyChooseUs />
-          <Team />
-          <Portfolio />
-          <Contact />
-        </Suspense>
-      </main>
-      <Suspense fallback={null}>
+      <MotionConfig reducedMotion="user">
+        <Navbar />
+        <main id="main-content" tabIndex={-1} className="min-h-screen bg-background text-white">
+          <Outlet />
+        </main>
         <Footer />
-      </Suspense>
+        <StickyCta />
+        <ScrollRestoration />
+      </MotionConfig>
     </LazyMotion>
   )
 }

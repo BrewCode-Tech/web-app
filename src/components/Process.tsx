@@ -53,12 +53,12 @@ function Step({ number, title, description, index, total }: StepProps) {
   const isLast = index === total - 1
 
   return (
-    <li ref={ref} className="relative flex min-w-0 flex-1 flex-row gap-5 md:flex-col md:gap-0">
+    <li ref={ref} className="relative flex min-w-0 flex-row gap-5 md:gap-4 xl:flex-1 xl:flex-col xl:gap-0">
       {!isLast && (
         <>
           <div
             aria-hidden="true"
-            className="absolute left-[calc(50%+20px)] right-[calc(-50%+20px)] top-[19px] z-0 hidden h-px bg-white/5 md:block"
+            className="absolute left-[calc(50%+20px)] right-[calc(-50%+20px)] top-[19px] z-0 hidden h-px bg-white/5 xl:block"
           />
           <motion.div
             aria-hidden="true"
@@ -66,7 +66,7 @@ function Step({ number, title, description, index, total }: StepProps) {
             animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
             transition={{ duration: 0.6, delay: index * 0.15 + 0.3, ease }}
             style={{ originX: 0 }}
-            className="absolute left-[calc(50%+20px)] right-[calc(-50%+20px)] top-[19px] z-10 hidden h-px bg-gradient-to-r from-accent/40 to-accent/10 md:block"
+            className="absolute left-[calc(50%+20px)] right-[calc(-50%+20px)] top-[19px] z-10 hidden h-px bg-gradient-to-r from-accent/40 to-accent/10 xl:block"
           />
           <div
             aria-hidden="true"
@@ -83,7 +83,7 @@ function Step({ number, title, description, index, total }: StepProps) {
         </>
       )}
 
-      <div aria-hidden="true" className="shrink-0 z-20 md:flex md:justify-center">
+      <div aria-hidden="true" className="z-20 shrink-0 xl:flex xl:justify-center">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={inView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
@@ -98,11 +98,11 @@ function Step({ number, title, description, index, total }: StepProps) {
         initial={{ opacity: 0, y: 12 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
         transition={{ duration: 0.45, delay: index * 0.15 + 0.15, ease }}
-        className={`min-w-0 flex-1 md:pt-5 md:text-center ${!isLast ? 'pb-10 md:pb-0' : ''}`}
+        className={`min-w-0 flex-1 md:pt-1.5 xl:pt-5 xl:text-center ${!isLast ? 'pb-10 md:pb-0' : ''}`}
       >
         <span className="font-heading text-xs font-bold tracking-widest text-accent/85">{number}</span>
         <h3 className="mt-1 font-heading text-sm font-semibold text-white sm:text-base">{title}</h3>
-        <p className="mt-2 text-xs leading-relaxed text-secondary sm:text-sm md:mx-auto md:max-w-[150px]">
+        <p className="mt-2 text-sm leading-relaxed text-secondary xl:mx-auto xl:max-w-[180px]">
           {description}
         </p>
       </motion.div>
@@ -131,7 +131,7 @@ function Process() {
           description="Structured, transparent, and designed to keep you informed at every stage."
         />
 
-        <ol role="list" className="flex flex-col md:flex-row md:items-start">
+        <ol role="list" className="flex flex-col md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-12 xl:flex xl:flex-row xl:items-start xl:gap-0">
           {STEPS.map((step, index) => (
             <Step key={step.number} {...step} index={index} total={STEPS.length} />
           ))}

@@ -7,21 +7,24 @@ interface SectionHeaderProps extends HTMLMotionProps<'div'> {
   eyebrow: ReactNode
   heading: ReactNode
   description: ReactNode
+  /** Use 'h1' when the section header is the page's main heading. */
+  as?: 'h1' | 'h2'
 }
 
 function SectionHeader({
   eyebrow,
   heading,
   description,
+  as: Heading = 'h2',
   className = 'mb-12 max-w-2xl sm:mb-16',
   ...motionProps
 }: SectionHeaderProps) {
   return (
     <motion.div {...motionProps} className={className}>
       <Eyebrow className="mb-4">{eyebrow}</Eyebrow>
-      <h2 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
+      <Heading className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
         {heading}
-      </h2>
+      </Heading>
       <p className="mt-4 text-sm leading-relaxed text-secondary sm:text-base">{description}</p>
     </motion.div>
   )

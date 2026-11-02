@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { m as motion, useInView } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import type { IconType } from 'react-icons'
 import { TbClipboardList, TbCode, TbServerCog, TbTestPipe } from 'react-icons/tb'
 import { fadeUp, inViewConfig, stagger, staggerItem } from '../lib/motion'
@@ -16,19 +17,19 @@ const ROLES: Role[] = [
     icon: TbClipboardList,
     title: 'Business Analysis & Client Support',
     description:
-      'Requirements analysis and stakeholder alignment from real enterprise product delivery — making sure what gets built matches what you actually need, and that you always know where your project stands.',
+      'Requirements analysis and stakeholder alignment, from engineers with real enterprise product delivery behind them — so what gets built matches what you actually need.',
   },
   {
     icon: TbCode,
     title: 'Full-Stack Engineering',
     description:
-      'Full ownership from architecture to deployment — React, TypeScript, Next.js, Node.js, Python, and Ruby on Rails, with AI integrations woven directly into production features rather than bolted on after.',
+      'Architecture to deployment in React, TypeScript, Next.js, Node.js, Python, and Ruby on Rails — with AI integrations built into production features, not bolted on after.',
   },
   {
     icon: TbServerCog,
     title: 'Backend, Data & DevOps',
     description:
-      'Experience running production systems handling hundreds of terabytes of data — query optimization, cloud infrastructure, and the deployment pipelines that keep releases safe.',
+      'Engineers who have run production systems holding hundreds of terabytes — query optimization, cloud infrastructure, and the deployment pipelines that keep releases safe.',
   },
   {
     icon: TbTestPipe,
@@ -38,24 +39,24 @@ const ROLES: Role[] = [
   },
 ]
 
-function Team() {
+function Network() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, inViewConfig)
 
   return (
-    <section id="team" className="w-full bg-background section-padding">
+    <section id="network" className="w-full bg-background section-padding">
       <div ref={ref} className="container-page">
         <SectionHeader
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={fadeUp}
-          eyebrow="Our Team"
+          eyebrow="Our Network"
           heading={
             <>
-              One Team, <span className="text-accent">Every Role You Need</span>
+              Start Lean, <span className="text-accent">Scale With People We Trust</span>
             </>
           }
-          description="The team you'd otherwise spend months recruiting, onboarding, and hoping gels together — already assembled, already shipping together."
+          description="Every engagement is founder-led. When your project needs more hands, we bring in engineers we have shipped production systems with before — not strangers from a job board. You meet each one before they join."
         />
 
         <motion.ul
@@ -101,14 +102,14 @@ function Team() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-10 text-center text-sm text-secondary sm:mt-12"
         >
-          No recruiting timeline, no ramp-up period.{' '}
-          <a href="#contact" className="font-medium text-white transition-colors hover:text-accent">
-            Book a call and put this team to work →
-          </a>
+          Tell us what you&apos;re building and we&apos;ll propose the right mix.{' '}
+          <Link to="/contact" className="font-medium text-white transition-colors hover:text-accent">
+            Start the conversation →
+          </Link>
         </motion.p>
       </div>
     </section>
   )
 }
 
-export default Team
+export default Network
