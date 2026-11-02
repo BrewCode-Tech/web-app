@@ -1,16 +1,17 @@
 import { useRef } from 'react'
 import { m as motion, useInView } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { TbCalendarEvent, TbMail } from 'react-icons/tb'
 import { fadeUp, inViewConfig } from '../lib/motion'
-import { CAL_BOOKING_URL, CONTACT_EMAIL } from '../lib/constants'
+import { CAL_BOOKING_URL, CONTACT_EMAIL } from '../content/company'
 import Eyebrow from './Eyebrow'
 
-function Contact() {
+function CtaBanner() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, inViewConfig)
 
   return (
-    <section id="contact" className="w-full bg-background section-padding">
+    <section id="get-started" className="w-full bg-background section-padding">
       <div ref={ref} className="container-page">
         <motion.div
           initial="hidden"
@@ -30,27 +31,37 @@ function Contact() {
               variants={fadeUp}
               className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl"
             >
-              Let&apos;s Build Something <span className="text-accent">Amazing.</span>
+              Let&apos;s See If We&apos;re a <span className="text-accent">Fit.</span>
             </motion.h2>
 
             <motion.p variants={fadeUp} className="mt-5 text-sm leading-relaxed text-secondary sm:text-base">
               Whether you have a fully scoped project or just an early idea, book a free 30-minute
-              discovery call — no commitment required.
+              call. You&apos;ll talk to the founder, not a salesperson — and leave with honest
+              advice even if we&apos;re not the right team.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-8 sm:mt-10">
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-10 sm:w-auto sm:flex-row"
+            >
               <motion.a
                 href={CAL_BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.98 }}
-                className="btn-primary group inline-flex items-center gap-3 px-7 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-base"
+                className="btn-primary group inline-flex w-full items-center justify-center gap-3 px-7 py-3.5 text-sm sm:w-auto sm:px-8 sm:py-4 sm:text-base"
               >
                 <TbCalendarEvent aria-hidden="true" size={18} />
                 Book a Free Discovery Call
                 <span className="sr-only"> (opens in new tab)</span>
               </motion.a>
+              <Link
+                to="/contact"
+                className="w-full rounded-lg border border-white/10 px-7 py-3.5 font-heading text-sm font-semibold text-white transition-colors hover:border-accent/60 hover:text-accent sm:w-auto sm:py-4 sm:text-base"
+              >
+                Send a Project Brief
+              </Link>
             </motion.div>
 
             <motion.address variants={fadeUp} className="mt-5 not-italic">
@@ -58,7 +69,7 @@ function Contact() {
                 Prefer email?{' '}
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="font-medium text-white transition-colors hover:text-accent"
+                  className="break-all font-medium text-white transition-colors hover:text-accent sm:break-normal"
                 >
                   <TbMail aria-hidden="true" size={14} className="mb-0.5 mr-1 inline-block" />
                   {CONTACT_EMAIL}
@@ -71,9 +82,8 @@ function Contact() {
               className="mt-8 w-full rounded-2xl border border-white/5 bg-background p-4 sm:mt-10 sm:p-5"
             >
               <p className="text-xs leading-relaxed text-secondary sm:text-sm">
-                <span className="font-medium text-white">No commitment required.</span> Pick a time
-                that works for you — we&apos;ll spend 30 minutes understanding your project before
-                any engagement.
+                <span className="font-medium text-white">No commitment required.</span> Happy to sign
+                your NDA before the call. We reply to every brief within one business day.
               </p>
             </motion.div>
           </div>
@@ -83,4 +93,4 @@ function Contact() {
   )
 }
 
-export default Contact
+export default CtaBanner
