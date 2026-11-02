@@ -32,6 +32,11 @@ export const FAQ: FaqItem[] = [
       'The founder leads every engagement personally and writes code. When a project needs more capacity — QA automation, data, DevOps, or extra full-stack hands — we bring in engineers from our network who have shipped production systems with us before. You meet everyone before they start.',
   },
   {
+    question: 'Can we start with just one engineer and grow later?',
+    answer:
+      'Yes — that is the most common way teams work with us. You start with the founder on your product, and when you need more capacity we add engineers from our network, one role at a time. The founder stays on and leads them, so nothing is lost as the team grows.',
+  },
+  {
     question: 'What if an engineer leaves mid-project?',
     answer:
       'Continuity is built in: documented code, shared repositories, and a founder who stays on the project throughout. If someone has to rotate off, we overlap the handover so you do not lose momentum.',

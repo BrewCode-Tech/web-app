@@ -1,6 +1,6 @@
 # Brew Code Tech — Website
 
-Marketing site for **Brew Code Tech**, a founder-led offshore software studio.
+Marketing site for **Brew Code Tech**, a founder-led software studio: hire one senior engineer, grow into a team.
 Live: https://brewcodetech.com/
 
 A multi-page React site where every route is **pre-rendered to static HTML** at build time
@@ -24,7 +24,7 @@ It's hosted free on **Cloudflare Pages**, and a small Pages Function handles the
 | Route              | File                         | What's on it |
 | ------------------ | ---------------------------- | ------------ |
 | `/`                | `src/pages/Home.tsx`         | Hero, proof strip, services, featured work, Brew Promise, timezone overlap, founder, CTA |
-| `/work`            | `src/pages/Work.tsx`         | All case studies |
+| `/work`            | `src/pages/Work.tsx`         | All case studies, then our own products |
 | `/work/:slug`      | `src/pages/CaseStudy.tsx`    | One case study (one page per entry in `caseStudies.ts`) |
 | `/how-we-work`     | `src/pages/HowWeWork.tsx`    | Engagement models, process, Brew Promise, FAQ |
 | `/about`           | `src/pages/About.tsx`        | Studio story, founder, engineer network, why us |
@@ -37,7 +37,11 @@ It's hosted free on **Cloudflare Pages**, and a small Pages Function handles the
 All copy that changes over time lives in `src/content/`. Components just render it.
 
 - **Add a project:** append to `CASE_STUDIES` in `src/content/caseStudies.ts`. The `/work` page,
-  its detail page, and the sitemap pick it up automatically.
+  its detail page, the sitemap, and `llms.txt` pick it up automatically.
+- **Add one of our own products:** append to `PRODUCTS` in `src/content/products.ts` (set `url` once
+  it's public). It appears in the "Our Own Products" section on `/work`.
+- **After changing case studies or products,** set `CONTENT_UPDATED` in `src/content/company.ts` to
+  today's date. It's shown as "Last updated" and sent to search engines.
 - **Founder, email, booking link, working hours, testimonials, rates:** `src/content/company.ts`.
 - **The Brew Promise:** `src/content/promise.ts`. **FAQ:** `src/content/faq.ts`.
   **Engagement models:** `src/content/engagement.ts`.
@@ -76,7 +80,8 @@ npm run build      # type-check + pre-render every route into dist/
 ```
 
 `npm run build` also:
-- writes `dist/sitemap.xml` from the pages it actually rendered (pages marked `noindex` are skipped);
+- writes `dist/sitemap.xml` and `dist/llms.txt` from the pages it actually rendered (pages marked
+  `noindex` are skipped);
 - writes `dist/404.html`;
 - fills the CSP in `dist/_headers` with SHA-256 hashes of the inline hydration scripts, which change every build.
 

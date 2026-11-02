@@ -66,7 +66,7 @@ function Footer() {
               <Logo size={44} />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-secondary">
-              A founder-led offshore software studio in {LOCATION}, building reliable web, SaaS,
+              A founder-led software studio in {LOCATION}, building reliable web, SaaS,
               data, and AI products for teams worldwide.
             </p>
           </motion.div>

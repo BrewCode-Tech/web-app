@@ -20,10 +20,10 @@ export function Component() {
         eyebrow="How We Work"
         title={
           <>
-            Offshore, Done the Way <span className="text-accent">You&apos;d Want It</span>
+            Remote Engineering, Done the Way <span className="text-accent">You&apos;d Want It</span>
           </>
         }
-        description="No black boxes. Here's how an engagement runs, what we commit to in writing, and the answers to the questions every team asks before hiring offshore."
+        description="No black boxes. Here's how an engagement runs, what we commit to in writing, and the answers to the questions every team asks before hiring a remote engineer or team."
       />
       <EngagementModels />
       <Process />

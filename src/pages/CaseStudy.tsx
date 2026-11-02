@@ -5,7 +5,7 @@ import PageHeader from '../components/PageHeader'
 import Seo from '../components/Seo'
 import SystemFlow from '../components/SystemFlow'
 import { CASE_STUDIES, findCaseStudy } from '../content/caseStudies'
-import { SITE_URL } from '../content/company'
+import { CONTENT_UPDATED, SITE_URL } from '../content/company'
 import { Component as NotFound } from './NotFound'
 
 export function Component() {
@@ -30,6 +30,7 @@ export function Component() {
             about: study.sector,
             abstract: study.summary,
             url: `${SITE_URL}/work/${study.slug}`,
+            dateModified: CONTENT_UPDATED,
             creator: { '@type': 'Organization', name: 'Brew Code Tech', url: SITE_URL },
           },
         ]}
@@ -100,6 +101,12 @@ export function Component() {
             <p className="rounded-2xl border border-white/5 bg-surface p-6 text-xs leading-relaxed text-secondary">
               Client details are withheld out of respect for confidentiality. We&apos;re happy to walk you
               through this work in more depth on a call.
+            </p>
+            <p className="px-1 text-xs text-secondary">
+              Last updated{' '}
+              <time dateTime={CONTENT_UPDATED}>
+                {new Date(CONTENT_UPDATED).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
+              </time>
             </p>
           </aside>
         </div>

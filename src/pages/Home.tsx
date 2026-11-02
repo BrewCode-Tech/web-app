@@ -15,8 +15,8 @@ export function Component() {
     <>
       <Seo
         path="/"
-        title="Brew Code Tech — Founder-Led Offshore Software Development, India"
-        description="A senior offshore engineer in India for web, SaaS, data, and AI products. Founder-led, real overlap with your hours, code in your GitHub from day one. Book a free 30-minute call."
+        title="Brew Code Tech — Hire a Senior Engineer, Grow Into a Team"
+        description="Hire a senior engineer for your web, SaaS, data, and AI products, and add vetted engineers as you grow. Founder-led, real overlap with your hours, code in your GitHub from day one. Book a free 30-minute call."
       />
       <Hero />
       <ProofStrip />

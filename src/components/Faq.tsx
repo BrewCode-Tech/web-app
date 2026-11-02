@@ -23,7 +23,7 @@ function Faq() {
               Straight <span className="text-accent">Answers</span>
             </>
           }
-          description="The questions every team asks before hiring offshore. If yours isn't here, ask us on the call."
+          description="The questions every team asks before hiring a remote engineer or team. If yours isn't here, ask us on the call."
         />
 
         {/* Native <details> keeps every answer in the HTML and works without JavaScript. */}

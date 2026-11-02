@@ -7,7 +7,7 @@ import { CAL_BOOKING_URL } from '../content/company'
 import Eyebrow from './Eyebrow'
 import Terminal from './Terminal'
 
-// The three things offshore buyers worry about most, answered up front.
+// The three things teams worry about most when hiring outside help, answered up front.
 const TRUST_CHIPS: { icon: IconType; label: string }[] = [
   { icon: TbBrandGithub, label: 'Code in your GitHub from day one' },
   { icon: TbClockHour4, label: 'Daily overlap with your hours' },
@@ -51,15 +51,15 @@ function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="min-w-0">
             <Eyebrow {...fadeUpWithDelay(0.1)} className="mb-5">
-              Founder-led offshore engineering
+              Founder-led software engineering
             </Eyebrow>
 
             <h1 className="font-heading text-[2.25rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-              The Offshore Partner
+              Hire One Engineer.
               <br />
-              You Don&apos;t Have to{' '}
+              Grow Into a{' '}
               <span className="relative inline-block">
-                <span className="text-accent">Chase.</span>
+                <span className="text-accent">Team.</span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
@@ -74,9 +74,9 @@ function Hero() {
               {...fadeUpWithDelay(0.35)}
               className="mt-6 max-w-lg text-base leading-relaxed text-secondary sm:text-lg md:text-xl"
             >
-              A senior engineer in India who builds your web, SaaS, data, and AI products — working
-              in your hours, shipping in your repos, and bringing in vetted engineers when you need
-              more hands.
+              Start with a senior engineer who builds your web, SaaS, data, and AI products — then
+              add vetted engineers when you&apos;re ready to grow. Working remotely, in your hours and
+              your repos.
             </motion.p>
 
             <motion.div {...fadeUpWithDelay(0.5)} className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">

@@ -33,7 +33,7 @@ function BrewPromise({ linkToDetails = false }: BrewPromiseProps) {
               Six Commitments, <span className="text-accent">In Writing</span>
             </>
           }
-          description="Most offshore horror stories come down to the same few failures: vanishing teams, hostage code, and silence. These go into every contract, so none of them can happen with us."
+          description="Most horror stories about hiring outside engineers come down to the same few failures: vanishing teams, hostage code, and silence. These go into every contract, so none of them can happen with us."
         />
 
         <motion.ol

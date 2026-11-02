@@ -13,6 +13,14 @@ export const CONTACT_EMAIL = 'hello@brewcodetech.com'
 
 export const LOCATION = 'India'
 
+export const GITHUB_URL = 'https://github.com/BrewCode-Tech'
+
+/**
+ * When the case studies and products were last reviewed (ISO date). Shown as "Last updated"
+ * on case study pages and sent to search engines, so bump it only when that content changes.
+ */
+export const CONTENT_UPDATED = '2026-11-02'
+
 /**
  * Hours we are reliably online, in IST (UTC+5:30, no daylight saving).
  * Drives the timezone-overlap widget. Use 24h numbers; fractional hours are fine (21.5 = 9:30 PM).
@@ -25,6 +33,7 @@ export interface Founder {
   /** Path under /public, e.g. '/founder.jpg'. Leave empty to show initials. */
   photo: string
   linkedin: string
+  github: string
   note: string
 }
 
@@ -33,6 +42,7 @@ export const FOUNDER: Founder = {
   title: 'Founder & Lead Engineer',
   photo: '/founder.jpg',
   linkedin: 'https://www.linkedin.com/in/mathi-s/',
+  github: 'https://github.com/mathi1322',
   note: "When you work with Brew Code Tech, you talk to me — not a sales rep. I scope the work, write the code, and stay accountable for every release. When a project needs more hands, I bring in engineers I've already shipped production systems with.",
 }
 
@@ -77,7 +87,7 @@ export const COST_COMPARISON: {
     sources: Source[]
   }
 } = {
-  brewMonthlyUsd: 3000,
+  brewMonthlyUsd: null,
   hoursPerDay: 7,
   workingDaysPerMonth: 21.7,
   asOf: 'October 2026',

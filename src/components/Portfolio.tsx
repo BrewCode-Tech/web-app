@@ -79,7 +79,7 @@ function Portfolio({ limit, asPage = false }: PortfolioProps) {
               Production Systems, <span className="text-accent">Real Numbers</span>
             </>
           }
-          description="Work shipped by our founder and the engineers in our network — on offshore teams and as lead engineers. Client names are withheld out of respect for confidentiality; the numbers are real."
+          description="Client work shipped by our founder and the engineers in our network — as part of client teams and as lead engineers. Client names are withheld out of respect for confidentiality; the numbers are real."
         />
 
         <motion.ul

@@ -26,6 +26,40 @@ async function indexablePaths(dir: string): Promise<string[]> {
   return paths.sort()
 }
 
+const decodeEntities = (text: string) =>
+  text
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex: string) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, dec: string) => String.fromCodePoint(Number(dec)))
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+
+/** The <title> and meta description a pre-rendered page was built with. */
+async function pageSummary(dir: string, path: string) {
+  const html = await readFile(join(dir, path === '/' ? 'index.html' : `${path.slice(1)}.html`), 'utf8')
+  const title = html.match(/<title[^>]*>([^<]*)<\/title>/)?.[1] ?? path
+  const description = html.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"/)?.[1] ?? ''
+  return { title: decodeEntities(title), description: decodeEntities(description) }
+}
+
+/**
+ * llms.txt (https://llmstxt.org): a plain-text map of the site for AI assistants,
+ * built from the same pre-rendered pages as the sitemap.
+ */
+async function llmsTxt(dir: string, paths: string[]) {
+  const home = await pageSummary(dir, '/')
+  const lines = await Promise.all(
+    paths
+      .filter((path) => path !== '/')
+      .map(async (path) => {
+        const { title, description } = await pageSummary(dir, path)
+        return `- [${title.replace(/ — Brew Code Tech$/, '')}](${SITE_URL}${path}): ${description}`
+      }),
+  )
+  return `# Brew Code Tech\n\n> ${home.description}\n\n## Pages\n\n${lines.join('\n')}\n`
+}
+
 /**
  * CSP hashes for the inline hydration scripts the SSG injects into each page.
  * Their content changes every build, so they're hashed here rather than listed by hand.
@@ -57,10 +91,10 @@ export default defineConfig({
     // for unknown URLs (it's marked noindex, so it stays out of the sitemap).
     includedRoutes: (paths) => [...paths, '/404'],
     async onFinished(dir) {
-      // The sitemap is built from what was actually pre-rendered, so it never drifts.
-      const urls = (await indexablePaths(dir))
-        .map((path) => `  <url><loc>${SITE_URL}${path}</loc></url>`)
-        .join('\n')
+      // The sitemap and llms.txt are built from what was actually pre-rendered, so they never drift.
+      const paths = await indexablePaths(dir)
+      const urls = paths.map((path) => `  <url><loc>${SITE_URL}${path}</loc></url>`).join('\n')
+      await writeFile(join(dir, 'llms.txt'), await llmsTxt(dir, paths))
       await writeFile(
         join(dir, 'sitemap.xml'),
         `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,

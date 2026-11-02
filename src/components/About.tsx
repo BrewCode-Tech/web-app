@@ -85,8 +85,8 @@ function About({ asPage = false }: AboutProps) {
               Brew Code Tech is a founder-led software studio in India. Our founder and the
               engineers in our network have spent years inside production software — analytics
               platforms ingesting billions of events a day, AI-powered automation, and enterprise
-              systems — much of it as part of offshore teams for clients abroad. We know what makes
-              offshore work go right, and what makes it go wrong.
+              systems — much of it working remotely for clients abroad. We know what makes remote
+              work go right, and what makes it go wrong.
             </motion.p>
             <motion.p variants={fadeUp} className="mt-4 text-sm leading-relaxed text-secondary sm:text-base">
               So we stay deliberately small: you work directly with the person building your

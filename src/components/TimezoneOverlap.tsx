@@ -108,10 +108,10 @@ function TimezoneOverlap() {
           eyebrow="Working Hours"
           heading={
             <>
-              Offshore, <span className="text-accent">Not Out of Reach</span>
+              Remote, <span className="text-accent">Not Out of Reach</span>
             </>
           }
-          description="The biggest worry with an offshore team is waiting a day for every answer. Here's exactly when we overlap with your working day."
+          description="The biggest worry with a remote engineer is waiting a day for every answer. Here's exactly when we overlap with your working day."
         />
 
         <motion.div

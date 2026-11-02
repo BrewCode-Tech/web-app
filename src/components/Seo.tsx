@@ -1,5 +1,5 @@
 import { Head } from 'vite-react-ssg'
-import { COMPANY_NAME, FOUNDER, SITE_URL } from '../content/company'
+import { COMPANY_NAME, FOUNDER, GITHUB_URL, SITE_URL } from '../content/company'
 
 interface SeoProps {
   title: string
@@ -26,16 +26,17 @@ const ORGANIZATION = {
   logo: `${SITE_URL}/icon-512.png`,
   image: DEFAULT_OG_IMAGE,
   description:
-    'Founder-led offshore software development studio in India building web, SaaS, data, and AI products for startups and growing businesses.',
+    'Founder-led software development studio in India building web, SaaS, data, and AI products for teams worldwide — start with one senior engineer, grow into a team.',
   areaServed: 'Worldwide',
   address: { '@type': 'PostalAddress', addressCountry: 'IN' },
   knowsAbout: ['Web development', 'SaaS', 'AI integration', 'Data engineering', 'Test automation'],
+  sameAs: [GITHUB_URL],
   founder: {
     '@type': 'Person',
     name: FOUNDER.name,
     jobTitle: FOUNDER.title,
     image: `${SITE_URL}${FOUNDER.photo}`,
-    sameAs: [FOUNDER.linkedin],
+    sameAs: [FOUNDER.linkedin, FOUNDER.github],
   },
 }
 

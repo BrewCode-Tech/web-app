@@ -23,8 +23,8 @@ export const ENGAGEMENT_MODELS: EngagementModel[] = [
   },
   {
     icon: TbUser,
-    name: 'Dedicated engineer',
-    bestFor: 'Ongoing product work where you want a senior engineer embedded in your team.',
+    name: 'Hire the founder',
+    bestFor: 'Ongoing product work where you want one senior engineer embedded in your team.',
     howItWorks: [
       'Works in your tools and rituals',
       'Fixed daily overlap with your team',
@@ -34,13 +34,13 @@ export const ENGAGEMENT_MODELS: EngagementModel[] = [
   },
   {
     icon: TbUsersPlus,
-    name: 'Team extension',
-    bestFor: 'Adding several roles at once — full-stack, QA automation, data, or DevOps.',
+    name: 'Grow into a team',
+    bestFor: 'When one engineer isn’t enough — add full-stack, QA automation, data, or DevOps roles.',
     howItWorks: [
-      'Founder-led, engineers from our network',
+      'Founder stays on and leads the team',
       'You meet everyone before they start',
       'Scale up or down month to month',
     ],
-    starts: 'Starts with a discovery call',
+    starts: 'Start with one engineer, or a team from day one',
   },
 ]

@@ -13,7 +13,7 @@ const outDir = `${root}public/og`
 
 // File names must match ogImageFor() in src/components/Seo.tsx.
 const PAGES = [
-  { file: 'home', eyebrow: 'Founder-led offshore engineering', title: 'The Offshore Partner You Don’t Have to Chase.', meta: 'Web · SaaS · Data · AI — from India, in your hours' },
+  { file: 'home', eyebrow: 'Founder-led software engineering', title: 'Hire One Engineer. Grow Into a Team.', meta: 'Web · SaaS · Data · AI — remote, in your hours' },
   { file: 'work', eyebrow: 'Our work', title: 'Production Systems, Real Numbers', meta: '280+ TB · 8–16B events a day · 3.4× faster queries' },
   { file: 'how-we-work', eyebrow: 'How we work', title: 'Six Commitments, In Writing', meta: 'You own the code · Real overlap · No lock-in' },
   { file: 'about', eyebrow: 'About', title: 'A Small Studio, Built on Big Systems', meta: 'Founder-led · Vetted engineer network' },
