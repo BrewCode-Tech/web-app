@@ -19,7 +19,7 @@ export const GITHUB_URL = 'https://github.com/BrewCode-Tech'
  * When the case studies and products were last reviewed (ISO date). Shown as "Last updated"
  * on case study pages and sent to search engines, so bump it only when that content changes.
  */
-export const CONTENT_UPDATED = '2026-11-02'
+export const CONTENT_UPDATED = '2026-11-04'
 
 /**
  * Hours we are reliably online, in IST (UTC+5:30, no daylight saving).

@@ -30,7 +30,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     icon: TbReceipt,
-    title: 'Bill Reader',
+    title: 'BillCheck',
     kind: 'Web app · Document AI',
     summary: 'Upload a bill as a PDF, photo, or Word file and get its details back as clean, structured data.',
     details:
@@ -39,7 +39,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     icon: TbChecklist,
-    title: 'Exam Answer Checker',
+    title: 'ScoreCheck',
     kind: 'Web tool · OCR',
     summary: "Scores a candidate's exam responses against the official answer key — even when the questions are shuffled.",
     details:
