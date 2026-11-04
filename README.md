@@ -24,8 +24,9 @@ It's hosted free on **Cloudflare Pages**, and a small Pages Function handles the
 | Route              | File                         | What's on it |
 | ------------------ | ---------------------------- | ------------ |
 | `/`                | `src/pages/Home.tsx`         | Hero, proof strip, services, featured work, Brew Promise, timezone overlap, founder, CTA |
-| `/work`            | `src/pages/Work.tsx`         | All case studies, then our own products |
+| `/work`            | `src/pages/Work.tsx`         | All case studies |
 | `/work/:slug`      | `src/pages/CaseStudy.tsx`    | One case study (one page per entry in `caseStudies.ts`) |
+| `/products`        | `src/pages/Products.tsx`     | Our own products |
 | `/how-we-work`     | `src/pages/HowWeWork.tsx`    | Engagement models, process, Brew Promise, FAQ |
 | `/about`           | `src/pages/About.tsx`        | Studio story, founder, engineer network, why us |
 | `/contact`         | `src/pages/Contact.tsx`      | Project-brief form + booking link |
@@ -39,7 +40,7 @@ All copy that changes over time lives in `src/content/`. Components just render 
 - **Add a project:** append to `CASE_STUDIES` in `src/content/caseStudies.ts`. The `/work` page,
   its detail page, the sitemap, and `llms.txt` pick it up automatically.
 - **Add one of our own products:** append to `PRODUCTS` in `src/content/products.ts` (set `url` once
-  it's public). It appears in the "Our Own Products" section on `/work`.
+  it's public). It appears on `/products`.
 - **After changing case studies or products,** set `CONTENT_UPDATED` in `src/content/company.ts` to
   today's date. It's shown as "Last updated" and sent to search engines.
 - **Founder, email, booking link, working hours, testimonials, rates:** `src/content/company.ts`.

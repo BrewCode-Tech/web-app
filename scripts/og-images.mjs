@@ -15,6 +15,7 @@ const outDir = `${root}public/og`
 const PAGES = [
   { file: 'home', eyebrow: 'Founder-led software engineering', title: 'Hire One Engineer. Grow Into a Team.', meta: 'Web · SaaS · Data · AI — remote, in your hours' },
   { file: 'work', eyebrow: 'Our work', title: 'Production Systems, Real Numbers', meta: '280+ TB · 8–16B events a day · 3.4× faster queries' },
+  { file: 'products', eyebrow: 'Built in-house', title: 'Our Own Products', meta: 'AI search visibility · Document AI · OCR exam checking' },
   { file: 'how-we-work', eyebrow: 'How we work', title: 'Six Commitments, In Writing', meta: 'You own the code · Real overlap · No lock-in' },
   { file: 'about', eyebrow: 'About', title: 'A Small Studio, Built on Big Systems', meta: 'Founder-led · Vetted engineer network' },
   { file: 'contact', eyebrow: 'Get in touch', title: 'Tell Us What You’re Building', meta: 'Free 30-minute call · Reply within one business day' },

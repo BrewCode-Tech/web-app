@@ -15,6 +15,7 @@ export const routes: RouteRecord[] = [
         lazy: () => import('./pages/CaseStudy'),
         getStaticPaths: () => CASE_STUDIES.map((study) => `work/${study.slug}`),
       },
+      { path: 'products', lazy: () => import('./pages/Products') },
       { path: 'how-we-work', lazy: () => import('./pages/HowWeWork') },
       { path: 'about', lazy: () => import('./pages/About') },
       { path: 'contact', lazy: () => import('./pages/Contact') },

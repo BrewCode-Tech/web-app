@@ -8,6 +8,7 @@ import Logo from './Logo'
 
 const NAV_LINKS: NavLink[] = [
   { label: 'Work', href: '/work' },
+  { label: 'Products', href: '/products' },
   { label: 'How We Work', href: '/how-we-work' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

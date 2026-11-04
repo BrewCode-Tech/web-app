@@ -49,24 +49,30 @@ function ProductCard({ icon: Icon, title, kind, summary, details, stack, url }: 
   )
 }
 
-function OwnProducts() {
+interface OwnProductsProps {
+  /** Render as the page's main section (h1 heading, clears the fixed navbar). */
+  asPage?: boolean
+}
+
+function OwnProducts({ asPage = false }: OwnProductsProps) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, inViewConfig)
 
   return (
-    <section id="products" className="w-full bg-background section-padding pt-0 sm:pt-0">
+    <section id="products" className={`w-full bg-background section-padding ${asPage ? 'pt-28 sm:pt-36' : 'pt-0 sm:pt-0'}`}>
       <div ref={ref} className="container-page">
         <SectionHeader
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={fadeUp}
+          as={asPage ? 'h1' : 'h2'}
           eyebrow="Built In-House"
           heading={
             <>
               Our Own <span className="text-accent">Products</span>
             </>
           }
-          description="Products we designed and built ourselves, end to end — from the first idea to working software."
+          description="Products we designed and built ourselves, end to end — from the first idea to working software. Building our own products keeps us thinking like product owners, not just contractors, on every client project."
         />
 
         <motion.ul
